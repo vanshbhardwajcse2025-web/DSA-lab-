@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node* insertAtBeginning(struct Node *head, int value)
+{
+    struct Node *newNode;
+    newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = value;
+    newNode->next = head;
+
+    return newNode;
+}
+struct Node* deleteInBetween(struct Node *head, int value)
+{
+    struct Node *prev;
+    struct Node *temp;
+    prev = head;
+    temp = head->next;
+    while (temp != NULL && temp->data != value)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    if (temp == NULL)
+    {
+        printf("Value not found\n");
+        return head;
+    }
+    prev->next = temp->next;
+    free(temp);
+    return head;
+}
+void display(struct Node *head)
+{
+    while (head != NULL)
+    {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+int main()
+{
+    struct Node *head = NULL;
+
+    head = insertAtBeginning(head, 40);
+    head = insertAtBeginning(head, 30);
+    head = insertAtBeginning(head, 20);
+    head = insertAtBeginning(head, 10);
+
+    printf("Original List: ");
+    display(head);
+
+    head = deleteInBetween(head, 30);
+
+    printf("After Deletion: ");
+    display(head);
+
+    return 0;
+}

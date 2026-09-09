@@ -1,5 +1,4 @@
 
-//AT THE BEGINNING INSERTION IN LINKED LIST
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -39,8 +38,6 @@ int main() {
     return 0;
 }
 
-
-//AT THE END INSERTION IN LINKED LIST
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -89,7 +86,6 @@ int main() {
 
     return 0;
 }
-// IN BETWEEN INSERTION IN LINKED LIST
 void insertBetween(struct Node *prev, int value)
 {
     struct Node *newNode = malloc(sizeof(struct Node));

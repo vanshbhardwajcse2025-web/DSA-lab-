@@ -1,0 +1,101 @@
+
+//AT THE BEGINNING INSERTION IN LINKED LIST
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+struct Node* insertAtBeginning(struct Node *head, int value) {
+    struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
+
+    newNode->data = value;
+    newNode->next = head;
+    head = newNode;
+
+    return head;
+}
+
+void display(struct Node *head) {
+    while (head != NULL) {
+        printf("%d -> ", head->data);
+        head = head->next;
+    }
+    printf("NULL\n");
+}
+
+int main() {
+    struct Node *head = NULL;
+
+    head = insertAtBeginning(head, 30);
+    head = insertAtBeginning(head, 20);
+    head = insertAtBeginning(head, 10);
+
+    printf("Linked List: ");
+    display(head);
+
+    return 0;
+}
+
+
+//AT THE END INSERTION IN LINKED LIST
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int data;
+    struct Node *next;
+};
+
+int main() {
+    struct Node *head = NULL, *newNode, *temp;
+    int n, i;
+
+    printf("Enter number of nodes: ");
+    scanf("%d", &n);
+
+    for (i = 0; i < n; i++) {
+        newNode = (struct Node*)malloc(sizeof(struct Node));
+
+        printf("Enter data: ");
+        scanf("%d", &newNode->data);
+
+        newNode->next = NULL;
+
+        if (head == NULL) {
+            head = newNode;
+        } else {
+            temp = head;
+
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+
+            temp->next = newNode;
+        }
+    }
+
+    temp = head;
+
+    printf("Linked List: ");
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+
+    printf("NULL");
+
+    return 0;
+}
+// IN BETWEEN INSERTION IN LINKED LIST
+void insertBetween(struct Node *prev, int value)
+{
+    struct Node *newNode = malloc(sizeof(struct Node));
+
+    newNode->data = value;
+    newNode->next = prev->next;
+    prev->next = newNode;
+}
+
